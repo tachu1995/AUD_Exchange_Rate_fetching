@@ -23,13 +23,13 @@ range_name = 'Sheet1!A1:C'
 
 
 # Declare the address as constant
-EZY_URL = "https://ezyremit.com/api/mt/rate?country=Vietnam&currency=VND&payoutMethod=1"
-HH_URL = "https://api.hhmt.com.au/public/remit/rates/lookup"
-TECHCOMBANK_URL = "https://techcombank.com/content/techcombank/web/vn/vi/cong-cu-tien-ich/ty-gia/_jcr_content.exchange-rates.integration.json"
-VIETCOMBANK_URL = "https://www.vietcombank.com.vn/vi-VN/KHCN/Cong-cu-Tien-ich/Ty-gia"
+EZY_URL = "AAAAAAAAAAAAAAAAAAAAAAAAA"
+HH_URL = "AAAAAAAAAAAAAAAAAAAAAAAAA"
+TECHCOMBANK_URL = "AAAAAAAAAAAAAAAAAAAAAAAAA"
+VIETCOMBANK_URL = "AAAAAAAAAAAAAAAAAAAAAAAAA"
 
 # Define payload for POST request to HH API
-payload = {"countryCode":"VNM","dmCode":"HOME","currencyCode":"VND"}
+payload = {"AAAAAAAAAAAAAAAAAAAAAAAAA"}
 
 
 def rate_fetching():
