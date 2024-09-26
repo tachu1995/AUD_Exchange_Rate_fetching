@@ -31,7 +31,6 @@ VIETCOMBANK_URL = "AAAAAAAAAAAAAAAAAAAAAAAAA"
 # Define payload for POST request to HH API
 payload = {"AAAAAAAAAAAAAAAAAAAAAAAAA"}
 
-
 def rate_fetching():
     # Making requests to the sites using requests library 
     ezy_response = requests.get(EZY_URL)
@@ -45,30 +44,33 @@ def rate_fetching():
 
     # Find the <li> element with data-code="AUD"
     aud_element = soup.find('li', {'data-code': 'AUD'})
-
-    tectcombank_rate = tech_response.json()["exchangeRate"]["data"][0]["askRateTM"]
-    vietombank_rate = aud_element.get("data-sell-rate")
-    hh_rate = hh_response.json()["rateValue"]
-    ezy_rate = ezy_response.json()["rate"]
-
-    # Get Date and tinme 
-    date = datetime.now().strftime("%Y-%m-%d %H:%M")
-
-    # Prepare the data to be insert into Google Sheet
-    data = {
-    "values": [
-        [date, hh_rate, ezy_rate, tectcombank_rate, vietombank_rate]
-    ]
-    }
-    
-    # Attemp to append the data into a new row of the Google Sheet, if failed will try again right away
     try:
-        result = service.spreadsheets().values().append(spreadsheetId=sheet_id, range=range_name, valueInputOption='USER_ENTERED', body=data).execute()
-        print(result)
-        # Sleep for 15 minutes between each call
-        time.sleep(900)
+        tectcombank_rate = tech_response.json()["exchangeRate"]["data"][0]["askRateTM"]
+        vietombank_rate = aud_element.get("data-sell-rate")
+        hh_rate = hh_response.json()["rateValue"]
+        ezy_rate = ezy_response.json()["rate"]
+
+        # Get Date and tinme 
+        date = datetime.now().strftime("%Y-%m-%d %H:%M")
+
+        # Prepare the data to be insert into Google Sheet
+        data = {
+        "values": [
+            [date, hh_rate, ezy_rate, tectcombank_rate, vietombank_rate]
+        ]
+        }
+        
+        # Attemp to append the data into a new row of the Google Sheet, if failed will try again right away
+        try:
+            result = service.spreadsheets().values().append(spreadsheetId=sheet_id, range=range_name, valueInputOption='USER_ENTERED', body=data).execute()
+            print(f"{date}: Append to Google Sheet Successfully.")
+            # print(result)
+            # Sleep for 15 minutes between each call
+            time.sleep(900)
+        except:
+            print("Error: Failed to Append to Google Sheet")
     except:
-        print("Error")
+        print("Error: Failed to fetch data from sites")
         
         
 if __name__ == "__main__":
