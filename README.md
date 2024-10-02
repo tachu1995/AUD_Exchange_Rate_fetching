@@ -1,11 +1,14 @@
 # Currency Exchange Rate Logger
+
 # Overview
+
 This script fetches currency exchange rates from multiple APIs and logs the data into a Google Sheet. It retrieves rates and updates the Google Sheet with the latest values. The script uses the requests library to make HTTP requests, BeautifulSoup for HTML parsing, and the Google Sheets API for data entry.
 
-Due to privacy, I have removed the URLs. Please find this yourself, this information is public and can be found without much issue. 
+Due to privacy, I have removed the URLs. Please find this yourself, this information is public and can be found without much issue.
 
 # For Google Sheet API:
-You Need to get your own API, it is free from Google. 
+
+You Need to get your own API, it is free from Google.
 
 # Update Log:
 
@@ -22,3 +25,13 @@ Now showing the exact date and time when data is fetched and appended to the Goo
 Refactor for Clarity:
 
 Updated print statements to provide clearer feedback in case of failure or success.
+
+# Update Log 02/10/2024
+
+Putting each HTTP call as its own function,
+Change Log for more clarity
+Press "Enter" to close process
+
+# Known Issue
+
+Failed to exit application, have to force shutdown process
